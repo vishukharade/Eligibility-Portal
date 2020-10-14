@@ -1,0 +1,41 @@
+{% extends "master.html"%}
+{% block content %}
+<br>  
+
+<br>
+<table width="100%" border="1" style="text-align: center;margin-top: 60px;" class="table table-striped table-dark">  
+    <tr>
+        <th>Id No</th>
+        <th>Name </th>
+        <th>Email id</th>
+        <th>College Name</th>
+        <th>Branch</th>
+        <th>Year</th>
+        <th>Div</th>
+        <th>Test Start </th>
+        <th>Test Submit</th>
+        <th>Total Marks </th>
+    </tr>
+    {% for i in coll %}
+   <tr>
+
+       <td>{{i.sid}}</td>
+       <td>{{i.name}}</td>
+       <td>{{i.email}}</td>
+       <td>{{i.year}}</td>
+       <td>{{i.college}}</td>
+       <td>{{i.branch}}</td>
+       <td>{{i.div}}</td>
+       <td>{{i.strtime}}</td>
+       <td>{{i.endtime}}</td>
+       <td>{{i.marks}}</td>
+   </tr>     
+    {% endfor %}
+</table> 
+<div style="text-align: center;position: center;">
+    <a href="/passstudentsview/" style="text-align: center;" class="btn btn-success">Back</a> 
+    <br>
+    <br>
+    <a href="/download/" class="btn btn-outline-primary" style="text-align: center;margin-top: 20px;">Download</a>   
+</div>
+{% endblock %}

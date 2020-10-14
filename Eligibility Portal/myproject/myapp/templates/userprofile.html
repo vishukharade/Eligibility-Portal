@@ -1,0 +1,39 @@
+{% extends "Master.html"%}
+{%block content%}
+<br>
+<br>
+<br>
+    <table class="table" style="border-style: double;margin-top: 30px;text-align: center;" >
+      <thead class="list-group-item-dark">
+        <tr class="danger">
+          <th>Id</th> <td>{{user.id}}</td>
+        </tr>
+        <tr>
+          <th>Full name</th> <td>{{user.name}}</td>
+        </tr>
+        <tr class="danger">
+          <th>Email_id</th>  <td>{{user.email_id}}</td>
+        </tr>
+        <tr>
+          <th>Phone No</th>  <td>{{user.phone_no}}</td>
+        </tr>
+        <tr class="danger">
+          <th>Gender</th> <td>{{user.gender}}</td>
+        </tr>
+        <tr>
+          <th>College</th><td>{{user.college}}</td>
+        </tr>
+        <tr class="danger">
+          <th>Branch</th> <td>{{user.branch}}</td>
+        </tr>
+        <tr>
+          <th>Year</th><td>{{user.year}}</td>
+        </tr>
+        <tr class="danger">
+          <th>Div</th><td>{{user.div}}</td>
+        </tr>
+  
+</thead>
+</table>
+
+{%endblock%}

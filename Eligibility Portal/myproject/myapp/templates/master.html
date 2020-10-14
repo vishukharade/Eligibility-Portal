@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <title>Quiz</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: century 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+    </style>
+    
+</head>
+
+<body>
+  <div class="container-fluid" style="position: absolute;background-image: url({%static 'h1.jpg'%});height: 100%;background-position: center;
+    background-repeat: no-repeat;background-size: cover;">
+    <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark  scrolling-navbar">
+        <a class="navbar-brand" href="/" style="font-size: 30px;"><strong>Eligibility Portal</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" style="text-align: left;" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="/" style="font-size: 20px;"><strong>Home</strong><span class="sr-only">(current)</span></a>
+            
+            <a class="nav-link" href="/aboutus/" style="font-size: 20px;"><strong>About Us</strong></a>
+    
+            
+            {% if request.session.logged_in %} 
+            {% if 'admin' not in request.session.role %}
+            <a class="nav-link" href="/userhome/" style="font-size: 20px;"><strong>Start Test</strong></>
+        <a class="btn btn-outline-danger" style="position: absolute;right: 8px;margin-top: 4px;" href="/logoutuser/">Logout</a>  
+        <a style="position: absolute;right: 102px;padding-top: 5px;font-size: larger;color: red;" href="/userprofile/"><strong> Hi  {{request.session.name}}</strong></a>
+        {% elif 'admin' in request.session.role %}
+        <a class="nav-link" href="/passstudentsview/" style="font-size: 20px;"><strong>Eligible Students</strong></a>
+        <a class="btn btn-outline-danger" style="position: absolute;right: 8px;margin-top: 4px;" href="/logoutuser/">Logout</a>  
+        <a style="position: absolute;right: 102px;padding-top: 5px;font-size: larger;color: red;" href="/userprofile/"><strong> Hi  {{request.session.name}}</strong></a>
+        {% endif%}
+        {%else%}
+        <a class="nav-link" href="/userloginview/" style="font-size: 20px;"><strong>LogIn</strong></a>
+        <a class="nav-link" href="/signuppage/" style="font-size: 20px;"><strong>SignUp</strong></a>
+        {%endif%}
+          </div>
+        </div>
+      </nav>
+
+
+      
+      
+      {%block content%}
+    
+      {% for message in messages %}
+      <p style="text-align: center;color: green;font-size: 25px;margin-top: 80px;">{{message}}</p>
+      {% endfor %}
+        <h1 style="color: black;font-size: 50px;position: fixed;margin-top: 200px;margin-left: 40px;text-align: center;margin-right: 40px;">“Trust yourself, you know more than you think you do”<br> <br>– Benjamin Spock</h1>
+        
+
+
+    </div>
+    {%endblock%} 
+  </div> 
+</body>
+
+</html>

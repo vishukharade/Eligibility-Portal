@@ -1,0 +1,65 @@
+{% extends 'aptitude.html'%}
+
+{% block content %}
+
+<div>
+    <div class=row style="padding-top: 40px;">
+        <div class=col-md-3 style="margin-left: 70px;">
+            <a  class="btn btn-outline-secondary" href="/aptitude/" type="submit" style="text-align: center;height: 70px;width: 150px;font-size: 30px;">Aptitude</a>
+        </div>
+        <div class=col-md-3 style="margin-left: -30px;">
+            <a class="btn btn-secondary" type="submit"  style="text-align: center;height: 70px;width: 150px;font-size: 30px;" >Technical</a>        
+        </div>
+        <div class=col-md-3 style="margin-left: -60px;">
+           <a href=""></a>
+
+        </div>
+        <div class=col-md-3>
+            <a id='timer' class="btn btn-outline-secondary" style="text-align: center;height: 70px;width: 150px;font-size: 40px;background-color: red;color: white;margin-left: 30px;border: red;" ></a>  
+        </div>
+    </div>  
+    
+<br>
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+</div>
+<form method="POST" action="/techresult/" id='quizForm'>
+    {% csrf_token %}
+    <div class="container">
+        <div>
+            {% for i in techlist %}
+            <table>
+                <tr style="color: blue;">
+                    <td><label/>&#8226; {{i.Question}} </td>
+                </tr>
+                <tr>
+                    <td><input type="radio"  name="{{i.id}}" id="optionA" value="A">  {{i.optionA}}</td>
+                </tr>
+                <tr>
+                    <td><input type="radio"  name="{{i.id}}" id="optionB" value="B">  {{i.optionB}}</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="{{i.id}}" id="optionC" value="C">  {{i.optionC}}</td>
+                </tr>
+                <tr>
+                    <td><input type="radio"  name="{{i.id}}" id="optionD" value="D">  {{i.optionD}}</td>
+                </tr>
+                
+    
+            </table>
+            <hr>
+            {% endfor %}
+
+            
+        </div>
+        
+        <input type="submit" value="SUBMIT TEST" class="btn btn-success">
+    
+        
+    </div>
+
+
+</form>
+    
+
+{% endblock %}

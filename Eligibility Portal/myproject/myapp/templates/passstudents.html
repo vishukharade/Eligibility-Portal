@@ -1,0 +1,24 @@
+{% extends "master.html"%}
+{% block content %}
+    <form action="/passstudents/" mathod="GET" style="margin-top: 130px;text-align: center;">
+    
+        <div>
+        <a style="text-align: center;font-size: 40px;"><strong> List of Pass Students </strong></a>
+        <div class="form-group">
+        <input type="text" list="colleges" name="college" placeholder="college Name" style="width: 300px;height: 37px;margin-top: 20px;padding-left: 7px;" required/>
+        <datalist id="colleges">
+        <option>MGM college of engineering and technology</option>
+        <option>VJTI</option>
+        <option>S.K.Somaya</option>
+        <option>Bharati Vidyapith</option>
+        <option>D.Y.Patil</option>
+        </datalist>
+        </div>
+        
+        <input type="submit" class="btn btn-success" value="Search" style="margin-top: 20px;">
+    </div>
+    </form> 
+    <br>  
+  
+{% endblock %}
+

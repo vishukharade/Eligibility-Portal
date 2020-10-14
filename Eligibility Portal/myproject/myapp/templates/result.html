@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Result</title>
+
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1 style="margin-top: 30px;color: green;font-size: 50px;">Result</h1>
+        <h1 style="margin-top: 30px;font-size: 30px;">Correct Answers</h1>
+        <p style="font-size: 30px;margin-top: 20px;"><strong>{{request.session.aptimarks}}</strong></p>
+        
+        <p style="font-size: 30px;color: green;"><strong>Total Marks - {{request.session.total}} / 100</strong></p>
+        
+        {% if request.session.total > 60 %}
+        <p style="color: green;font-size: 60px;margin-top: 30px;">Congratulations!! Your Pass</p>
+        {% else %}
+        <p style="color: red;font-size: 60px;margin-top: 30px;">Sorry!! Your Fail</p>
+        {% endif %}
+        <a href="/logoutuser/" class="btn btn-success" style="text-align: center;margin-top: 20px;">Logout</a>
+        <br>
+        <br>
+        
+        </div>  
+</body>
+
+
+</html>

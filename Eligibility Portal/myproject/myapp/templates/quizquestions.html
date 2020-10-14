@@ -1,0 +1,223 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quiz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  
+<style>
+
+    .actionModal {
+	  display: none; 
+	  position: fixed; 
+	  z-index: 3; 
+	  padding-top: 150px; 
+	  left: 0;
+	  top: 0;
+	  width: 100%; 
+	  height: 100%; 
+	  overflow: auto; 
+	  background-color: rgb(0,0,0); 
+	  background-color: rgba(0,0,0,0.4); 
+	}
+	
+	.actionModal-content {
+		font-family: "Open Sans";
+		font-weight: 400;
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		max-height: calc(100vh - 250px);
+		overflow: auto; 
+		border-radius: 4px;
+		font-size: 1.2em;
+	}
+	
+	.actionModal-content::-webkit-scrollbar {
+	  width: 10px;
+	}
+	
+	/* Track */
+	.actionModal-content::-webkit-scrollbar-track {
+	  background: #f1f1f1; 
+	  border-radius: 4px;
+	}
+	 
+	/* Handle */
+	.actionModal-content::-webkit-scrollbar-thumb {
+	  background: #888; 
+	  border-radius: 4px;
+	}
+	
+	/* Handle on hover */
+	.actionModal-content::-webkit-scrollbar-thumb:hover {
+	  background: #555; 
+	}
+	
+	
+	.actionModal-content b{
+		font-weight: 700;
+	}
+
+</style>
+
+
+</head>
+<body>
+    <div class="tab-content">
+        <div id="testEndBlock" class="actionModal" style="display: none;">
+            <div class="actionModal-content" id="actionModal" style="max-width: 500px; text-align: center;">
+                <i class='fa fa-exclamation-triangle'></i> <b>Confirm Action</b> <br>
+                <br> <b>Your test duration has been finished and the test will be auto submited. </b>
+                <div style='width: 100%; margin: auto;'>
+                    <button type='button' class='btn btn-primary' onclick="autoSubmit()" 
+                    style='margin: 10px;'>Close</button>
+                </div>
+            </div>
+        </div> 
+    
+
+    
+    <h2>Quiz Questions</h2>
+  
+    <ul class="nav nav-tabs">
+        <li class="active" style="width: 150px;text-align: center;"><a data-toggle="tab" href="#aptitude">Aptitude</a></li>
+        <li style="width: 150px;text-align: center;"><a data-toggle="tab" href="#technical">Technical</a></li>
+        <div class=col-md-8 style="text-align: center;">
+            <h3>TIME LEFT</h3>
+            <a id='timer' style="text-align: center;height: 50px;width: 150px;font-size: 30px;color: red;" ></a>   
+        </div>
+    </ul>
+
+    
+            
+        
+        <div id="aptitude" class="tab-pane fade in active">
+            <form method="POST" action="/quizresult/" id='quizForm1'>
+                {% csrf_token %}
+                
+                <div class="container">
+                    <div>
+                        {% for i in aptilist1 %}
+                        <table>
+                            <tr style="color: blue;">
+                                <td><label/>&#8226; {{i.Question}} </td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio"  name="{{i.id}}" id="optionA" value="A">  {{i.optionA}}</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio"  name="{{i.id}}" id="optionB" value="B">  {{i.optionB}}</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="{{i.id}}" id="optionC" value="C">  {{i.optionC}}</td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio"  name="{{i.id}}" id="optionD" value="D">  {{i.optionD}}</td>
+                            </tr>
+                            <tr>
+                                <td><label  name={{i.id}} id="correct" value={{i.correct}} style="display: none;">  {{i.correct}}</td>
+                            </tr>
+                
+                        </table>
+                        <hr>
+                        {% endfor %}
+            
+                        
+                    </div>
+                    <a data-toggle="tab" href="#technical"  class="btn btn-success">Technical</a>
+                
+                </div>
+        
+        </div>
+
+        
+        
+
+        <div id="technical" class="tab-pane fade">
+            <div class="container">
+                <div>
+                    
+                    {% for i in techlist1 %}
+                    <table>
+                        <tr style="color: blue;">
+                            <td><label/>&#8226; {{i.Question}} </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio"  name="{{i.id}}" id="optionA" value="A">  {{i.optionA}}</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio"  name="{{i.id}}" id="optionB" value="B">  {{i.optionB}}</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="{{i.id}}" id="optionC" value="C">  {{i.optionC}}</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio"  name="{{i.id}}" id="optionD" value="D">  {{i.optionD}}</td>
+                        </tr>
+                        
+            
+                    </table>
+                    <hr>
+                    {% endfor %}
+        
+                    
+                </div>
+                
+                <input type="submit" value="SUBMIT TEST" class="btn btn-success">
+            
+                
+            </div>
+                        
+        </div>
+        </form>
+    </div>
+</body>
+
+
+<script>
+ localStorage.clear();
+$(document).ready(function() {
+
+    var timer2 = localStorage.getItem('timer');
+    if(timer2 === null) 
+        timer2 = "60:00";
+
+    $('#timer').html(timer2);
+
+    var interval = setInterval(function() {
+        var timer = timer2.split(':');
+        var minutes = parseInt(timer[0], 10);
+        var seconds = parseInt(timer[1], 10);
+        --seconds;
+        minutes = (seconds < 0) ? --minutes : minutes;
+        if (minutes < 0){
+            clearInterval(interval);
+            localStorage.removeItem('timer');
+            $('button').show();
+        }else{
+            seconds = (seconds < 0) ? 59 : seconds;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+            $('#timer').html(minutes + ':' + seconds);
+            timer2 = minutes + ':' + seconds;
+            localStorage.setItem('timer',timer2);
+        }
+        
+        console.log("timer2: "+timer2)
+        if(timer2 == "0:00")
+            $('#testEndBlock').show();
+    }, 1000);
+});
+
+function autoSubmit(){
+    document.getElementById('quizForm1').submit();
+}
+</script> 
+
+</html>
+
